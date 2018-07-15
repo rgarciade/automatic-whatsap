@@ -1,7 +1,6 @@
 //Modules
-const { BrowserWindow } = require('electron')
-
-//browseWindow instance
+const { BrowserWindow, ipcMain } = require('electron')
+    //browseWindow instance
 exports.win
 
 
@@ -19,7 +18,7 @@ exports.createWindow = () => {
     })
 
     //Devtools
-    // this.win.webContents.openDevTools()
+    this.win.webContents.openDevTools()
 
     // and load the index.html of the app.
     this.win.loadFile('renderer/whatsap.html')
@@ -29,3 +28,9 @@ exports.createWindow = () => {
         this.win = null
     })
 }
+
+// Listen for after-send-whatsap
+/* ipcMain.on('after-send-whatsap', (e, itemUrl) => {
+    // return app.js new-send-whatsap
+     e.sender.send('new-send-whatsap', item)
+}) */
